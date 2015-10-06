@@ -59,7 +59,7 @@ public class SnakeLadder {
         String names[]=new String[player]; 
         int position[]=new int[player]; 
         System.out.println("Enter the player names for "+player+" players");
-        sc.nextLine(); 
+        sc.nextLine();
         for(i=0;i<player;i++){
             System.out.println("Enter for name for"+" player"+(i+1));
             names[i]=sc.nextLine(); 
@@ -76,14 +76,14 @@ public class SnakeLadder {
                 index=sc.nextInt(); 
                 evaluatePos(index,position,i,pos,snakes,ladders,posL);
                 if(position[i]==100){
-                    System.out.println("Congratulations player "+player+" wins :)");
+                    System.out.println("Congratulations player "+i+" wins :)");
                     System.exit(0); 
                 }else{
                     // print the positions of all players
                         System.out.println("The positons : "); 
 
-                    for(i=0;i<player;i++){
-                        System.out.println("Player"+i+" ->"+position[i]); 
+                    for(j=0;j<player;j++){
+                        System.out.println("Player"+j+" ->"+position[j]); 
                     }
                 }
             }
@@ -100,6 +100,13 @@ public class SnakeLadder {
             nextPos=index+position[player]; 
             
             // check if any snake lies over that path 
+            for(i=0;i<ladders;i++){
+                
+                if(posL[i][0]==nextPos){
+                    nextPos=posL[i][1]; 
+                }
+            }
+            
             for(i=0;i<snakes;i++){
                 
                 if(pos[i][0]==nextPos){
@@ -107,12 +114,7 @@ public class SnakeLadder {
                 }
             }
             // check for the ladders over the path 
-            for(i=0;i<ladders;i++){
-                
-                if(posL[i][0]==nextPos){
-                    nextPos=pos[i][1]; 
-                }
-            }
+            
             position[player]=nextPos; 
     }
 
